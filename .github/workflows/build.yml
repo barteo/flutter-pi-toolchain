@@ -21,11 +21,14 @@ jobs:
           ref: llvmorg-11.0.1
           path: llvm-project
 
+      - name: Checkout Binutils
+        run: |
+          git clone --depth 1 --branch binutils-2_35_1 git://sourceware.org/git/binutils-gdb.git binutils-gdb
+
       - name: Build LLVM
         run: |
           cd llvm-project
-          mkdir build-llvm
-          cd build-llvm
+          mkdir build-llvm && cd build-llvm
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
@@ -38,8 +41,7 @@ jobs:
 
       - name: Build Clang
         run: |
-          mkdir build-clang
-          cd build-clang
+          mkdir build-clang && cd build-clang
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
@@ -47,4 +49,15 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/toolchain \
             ../clang
           make -j `nproc`
+          make install
+          cd ../..
+
+      - name: Build Binutils
+        run: |
+          cd binutils-gdb
+          ./configure \
+            --prefix=$GITHUB_WORKSPACE/toolchain \
+            --enable-ld \
+            --target=arm-linux-gnueabihf
+          make
           make install
