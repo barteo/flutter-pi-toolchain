@@ -61,3 +61,10 @@ jobs:
             --target=arm-linux-gnueabihf
           make
           make install
+
+      - name: Store Toolchain
+        uses: actions/upload-artifact@v2
+        with:
+          name: Toolchain-LLVM-11.0.1
+          path: app/build/reports/tests
+
