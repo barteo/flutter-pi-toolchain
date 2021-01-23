@@ -24,7 +24,8 @@ jobs:
       - name: Build LLVM
         run: |
           cd llvm-project
-          ls -la
+          mkdir build-llvm
+          cd build-llvm
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
@@ -33,9 +34,12 @@ jobs:
             ../llvm
           make -j `nproc`
           make install
+          cd ..
 
       - name: Build Clang
         run: |
+          mkdir build-clang
+          cd build-clang
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
