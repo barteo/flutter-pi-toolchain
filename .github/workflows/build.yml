@@ -1,0 +1,22 @@
+name: Build
+
+on: push
+
+jobs:
+  toolchain:
+    name: Toolchain
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: main
+
+      - name: Checkout LLVM
+        uses: actions/checkout@v2
+        with:
+          repository: llvm/llvm-project
+          ref: llvmorg-11.0.1
+          path: llvm
