@@ -37,10 +37,10 @@ jobs:
             ../llvm
           make -j `nproc`
           make install
-          cd ..
 
       - name: Build Clang
         run: |
+          cd llvm-project
           mkdir build-clang && cd build-clang
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
