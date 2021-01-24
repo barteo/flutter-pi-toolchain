@@ -14,6 +14,11 @@ jobs:
         with:
           path: main
 
+      - name: Test cmake
+        run: |
+          apt-cache policy cmake
+          apt install cmake=3.10.2-1ubuntu2.18.04.2
+
       - name: Checkout LLVM
         uses: actions/checkout@v2
         with:
@@ -49,16 +54,16 @@ jobs:
 #            ../clang
 #          make -j `nproc`
 #          make install
-
-      - name: Build Binutils
-        run: |
-          cd binutils-gdb
-          ./configure \
-            --prefix=`pwd`/../toolchain \
-            --enable-ld \
-            --target=arm-linux-gnueabihf
-          make
-          make install
+#
+#      - name: Build Binutils
+#        run: |
+#          cd binutils-gdb
+#          ./configure \
+#            --prefix=`pwd`/../toolchain \
+#            --enable-ld \
+#            --target=arm-linux-gnueabihf
+#          make
+#          make install
 
       - name: Store Toolchain
         uses: actions/upload-artifact@v2
