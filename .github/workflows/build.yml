@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          sudo apt install git
+          apt install git
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=../..//toolchain \
+            -DCMAKE_INSTALL_PREFIX=/toolchain \
             ../llvm
           make -j `nproc`
           make install
@@ -50,7 +50,7 @@ jobs:
           cmake \
             -DLLVM_TARGETS_TO_BUILD=ARM \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=../../toolchain \
+            -DCMAKE_INSTALL_PREFIX=/toolchain \
             ../clang
           make -j `nproc`
           make install
@@ -59,7 +59,7 @@ jobs:
         run: |
           cd binutils-gdb
           ./configure \
-            --prefix=`pwd`/../toolchain \
+            --prefix=/toolchain \
             --enable-ld \
             --target=arm-linux-gnueabihf
           make
@@ -69,5 +69,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Toolchain-LLVM-11.0.1
-          path: toolchain
+          path: /toolchain
 
