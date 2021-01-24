@@ -33,7 +33,7 @@ jobs:
 #            -DLLVM_TARGETS_TO_BUILD=ARM \
 #            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
 #            -DCMAKE_BUILD_TYPE=Release \
-#            -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/toolchain \
+#            -DCMAKE_INSTALL_PREFIX=/toolchain \
 #            ../llvm
 #          make -j `nproc`
 #          make install
@@ -46,7 +46,7 @@ jobs:
 #            -DLLVM_TARGETS_TO_BUILD=ARM \
 #            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
 #            -DCMAKE_BUILD_TYPE=Release \
-#            -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/toolchain \
+#            -DCMAKE_INSTALL_PREFIX=/toolchain \
 #            ../clang
 #          make -j `nproc`
 #          make install
@@ -55,7 +55,7 @@ jobs:
         run: |
           cd binutils-gdb
           ./configure \
-            --prefix=$GITHUB_WORKSPACE/toolchain \
+            --prefix=/toolchain \
             --enable-ld \
             --target=arm-linux-gnueabihf
           make
@@ -65,5 +65,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Toolchain-LLVM-11.0.1
-          path: $GITHUB_WORKSPACE/toolchain
+          path: /toolchain
 
