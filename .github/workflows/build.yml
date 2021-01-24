@@ -17,7 +17,7 @@ jobs:
       - name: Test cmake
         run: |
           apt-cache policy cmake
-          apt install cmake=3.10.2-1ubuntu2.18.04.2
+          sudo apt install cmake=3.10.2-1ubuntu2.18.04.2
 
       - name: Checkout LLVM
         uses: actions/checkout@v2
