@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt update
-          apt install -y bison cmake g++ git python texinfo
+          apt install -y bison cmake flex g++ git python texinfo
 
       - name: Checkout
         uses: actions/checkout@v2
