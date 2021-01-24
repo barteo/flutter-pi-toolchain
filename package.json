@@ -1,0 +1,19 @@
+{
+  "name": "flutter-pi-toolchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barteo/flutter-pi-toolchain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barteo/flutter-pi-toolchain/issues"
+  },
+  "homepage": "https://github.com/barteo/flutter-pi-toolchain#readme"
+}
