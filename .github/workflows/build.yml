@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt update
-          apt install -y git cmake python
+          apt install -y cmake g++ git python
 
       - name: Checkout
         uses: actions/checkout@v2
