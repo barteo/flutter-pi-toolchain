@@ -33,12 +33,12 @@ jobs:
         with:
           name: webpack artifacts
           path: public
-      - name: npm install, and test
-        run: |
-          npm install
-          npm test
-        env:
-          CI: true
+#      - name: npm install, and test
+#        run: |
+#          npm install
+#          npm test
+#        env:
+#          CI: true
 
   build-and-push-image:
     runs-on: ubuntu-latest
