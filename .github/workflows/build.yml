@@ -3,10 +3,11 @@ name: Build
 on: push
 
 jobs:
-  toolchain:
+  container-job:
     name: Toolchain
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    container: ubuntu:18.04
 
     steps:
       - name: Checkout
@@ -25,11 +26,11 @@ jobs:
         run: |
           git clone --depth 1 --branch binutils-2_35_1 git://sourceware.org/git/binutils-gdb.git binutils-gdb
 
-      - name: Install dependencies
-        run: |
-          cmake --version
-          sudo apt install cmake
-          cmake --version
+#      - name: Install dependencies
+#        run: |
+#          cmake --version
+#          sudo apt install cmake
+#          cmake --version
 
       - name: Build LLVM
         run: |
