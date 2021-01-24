@@ -10,6 +10,10 @@ jobs:
     container: ubuntu:18.04
 
     steps:
+      - name: Install dependencies
+        run: |
+          sudo apt install git
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -25,12 +29,6 @@ jobs:
       - name: Checkout Binutils
         run: |
           git clone --depth 1 --branch binutils-2_35_1 git://sourceware.org/git/binutils-gdb.git binutils-gdb
-
-#      - name: Install dependencies
-#        run: |
-#          cmake --version
-#          sudo apt install cmake
-#          cmake --version
 
       - name: Build LLVM
         run: |
