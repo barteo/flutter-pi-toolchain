@@ -14,12 +14,6 @@ jobs:
         with:
           path: main
 
-      - name: Test cmake
-        run: |
-          apt-cache policy cmake
-          sudo apt install cmake
-          apt-cache policy cmake
-
       - name: Checkout LLVM
         uses: actions/checkout@v2
         with:
@@ -31,40 +25,46 @@ jobs:
         run: |
           git clone --depth 1 --branch binutils-2_35_1 git://sourceware.org/git/binutils-gdb.git binutils-gdb
 
-#      - name: Build LLVM
-#        run: |
-#          cd llvm-project
-#          mkdir build-llvm && cd build-llvm
-#          cmake \
-#            -DLLVM_TARGETS_TO_BUILD=ARM \
-#            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
-#            -DCMAKE_BUILD_TYPE=Release \
-#            -DCMAKE_INSTALL_PREFIX=../..//toolchain \
-#            ../llvm
-#          make -j `nproc`
-#          make install
-#
-#      - name: Build Clang
-#        run: |
-#          cd llvm-project
-#          mkdir build-clang && cd build-clang
-#          cmake \
-#            -DLLVM_TARGETS_TO_BUILD=ARM \
-#            -DCMAKE_BUILD_TYPE=Release \
-#            -DCMAKE_INSTALL_PREFIX=../../toolchain \
-#            ../clang
-#          make -j `nproc`
-#          make install
-#
-#      - name: Build Binutils
-#        run: |
-#          cd binutils-gdb
-#          ./configure \
-#            --prefix=`pwd`/../toolchain \
-#            --enable-ld \
-#            --target=arm-linux-gnueabihf
-#          make
-#          make install
+      - name: Install dependencies
+        run: |
+          cmake --version
+          sudo apt install cmake
+          cmake --version
+
+      - name: Build LLVM
+        run: |
+          cd llvm-project
+          mkdir build-llvm && cd build-llvm
+          cmake \
+            -DLLVM_TARGETS_TO_BUILD=ARM \
+            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=../..//toolchain \
+            ../llvm
+          make -j `nproc`
+          make install
+
+      - name: Build Clang
+        run: |
+          cd llvm-project
+          mkdir build-clang && cd build-clang
+          cmake \
+            -DLLVM_TARGETS_TO_BUILD=ARM \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=../../toolchain \
+            ../clang
+          make -j `nproc`
+          make install
+
+      - name: Build Binutils
+        run: |
+          cd binutils-gdb
+          ./configure \
+            --prefix=`pwd`/../toolchain \
+            --enable-ld \
+            --target=arm-linux-gnueabihf
+          make
+          make install
 
       - name: Store Toolchain
         uses: actions/upload-artifact@v2
