@@ -16,6 +16,10 @@ jobs:
       TOOLCHAIN: `pwd`/toolchain
 
     steps:
+      - name: Create Toolchain path
+        id: toolchain
+        run: echo `pwd`/toolchain
+
       - name: Install dependencies
         run: |
           apt update
@@ -65,18 +69,18 @@ jobs:
       - name: Build Binutils
         run: |
           echo `pwd`
-          echo $TOOLCHAIN
-          mkdir $TOOLCHAIN
-          ls -la $TOOLCHAIN
+          echo ${{ steps.toolchain.outputs.toolchain }}
+          mkdir ${{ steps.toolchain.outputs.toolchain }}
+          ls -la ${{ steps.toolchain.outputs.toolchain }}
           cd binutils-gdb
           ./configure \
-            --prefix=$TOOLCHAIN \
+            --prefix=${{ steps.toolchain.outputs.toolchain }} \
             --enable-ld \
             --target=arm-linux-gnueabihf
           make
           make install
           echo "Finish"
-          ls -la ${{ github.workspace }}/toolchain
+          ls -la ${{ steps.toolchain.outputs.toolchain }}
 
 #      - name: Store Toolchain
 #        uses: actions/upload-artifact@v2
@@ -89,7 +93,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: ${{ github.workspace }}/Dockerfile
+          dockerfile: ./main/Dockerfile
           registry: docker.pkg.github.com
-          repository: barteo/flutter-pi-toolchain/toolchain-image
+          repository: barteo/flutter-pi-toolchain/toolchain
           tag_with_ref: true
