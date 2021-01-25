@@ -15,7 +15,14 @@ jobs:
     steps:
       - name: Create Toolchain path
         id: toolchain
-        run: echo `pwd`/toolchain
+        run: echo "::set-output name=toolchain::`pwd`/toolchain"
+
+      - name: Test
+        run: |
+          echo `pwd`
+          echo ${{ steps.toolchain.outputs.toolchain }}
+          mkdir ${{ steps.toolchain.outputs.toolchain }}
+          ls -la ${{ steps.toolchain.outputs.toolchain }}
 
       - name: Install dependencies
         run: |
