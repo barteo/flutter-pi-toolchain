@@ -11,9 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
     container: ubuntu:18.04
-    
-    env:
-      TOOLCHAIN: `pwd`/toolchain
 
     steps:
       - name: Create Toolchain path
