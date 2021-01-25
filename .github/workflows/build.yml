@@ -38,30 +38,30 @@ jobs:
         run: |
           git clone --depth 1 --branch binutils-2_35_1 git://sourceware.org/git/binutils-gdb.git binutils-gdb
 
-      - name: Build LLVM
-        run: |
-          cd llvm-project
-          mkdir build-llvm && cd build-llvm
-          cmake \
-            -DLLVM_TARGETS_TO_BUILD=ARM \
-            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
-            ../llvm
-          make -j `nproc`
-          make install
-
-      - name: Build Clang
-        run: |
-          cd llvm-project
-          mkdir build-clang && cd build-clang
-          cmake \
-            -DLLVM_TARGETS_TO_BUILD=ARM \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
-            ../clang
-          make -j `nproc`
-          make install
+#      - name: Build LLVM
+#        run: |
+#          cd llvm-project
+#          mkdir build-llvm && cd build-llvm
+#          cmake \
+#            -DLLVM_TARGETS_TO_BUILD=ARM \
+#            -DLLVM_DEFAULT_TARGET_TRIPLE=arm-linux-gnueabihf \
+#            -DCMAKE_BUILD_TYPE=Release \
+#            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
+#            ../llvm
+#          make -j `nproc`
+#          make install
+#
+#      - name: Build Clang
+#        run: |
+#          cd llvm-project
+#          mkdir build-clang && cd build-clang
+#          cmake \
+#            -DLLVM_TARGETS_TO_BUILD=ARM \
+#            -DCMAKE_BUILD_TYPE=Release \
+#            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
+#            ../clang
+#          make -j `nproc`
+#          make install
 
       - name: Build Binutils
         run: |
