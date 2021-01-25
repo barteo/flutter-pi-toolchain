@@ -69,6 +69,8 @@ jobs:
             --target=arm-linux-gnueabihf
           make
           make install
+          echo "Finish"
+          ls -la `pwd`/toolchain
 
 #      - name: Store Toolchain
 #        uses: actions/upload-artifact@v2
@@ -81,6 +83,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: `pwd`/toolchain
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/toolchain-image
           tag_with_ref: true
