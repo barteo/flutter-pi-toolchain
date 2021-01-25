@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
     container: ubuntu:18.04
+    
+    env:
+      TOOLCHAIN: `pwd`/toolchain
 
     steps:
       - name: Install dependencies
@@ -62,11 +65,12 @@ jobs:
       - name: Build Binutils
         run: |
           echo `pwd`
-          echo ${{ github.workspace }}
-          ls -la ${{ github.workspace }}
+          echo $TOOLCHAIN
+          mkdir $TOOLCHAIN
+          ls -la $TOOLCHAIN
           cd binutils-gdb
           ./configure \
-            --prefix=${{ github.workspace }}/toolchain \
+            --prefix=$TOOLCHAIN \
             --enable-ld \
             --target=arm-linux-gnueabihf
           make
