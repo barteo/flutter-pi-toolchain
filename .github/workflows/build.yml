@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Create Toolchain path
         id: toolchain
-        run: echo "::set-output name=toolchain::`pwd`/toolchain"
+        run: echo "::set-output name=toolchain::`pwd`/main/toolchain"
 
       - name: Test
         run: |
