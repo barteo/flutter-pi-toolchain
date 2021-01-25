@@ -72,10 +72,6 @@ jobs:
 
       - name: Build Binutils
         run: |
-          echo `pwd`
-          echo ${{ steps.toolchain.outputs.toolchain }}
-          mkdir ${{ steps.toolchain.outputs.toolchain }}
-          ls -la ${{ steps.toolchain.outputs.toolchain }}
           cd binutils-gdb
           ./configure \
             --prefix=${{ steps.toolchain.outputs.toolchain }} \
