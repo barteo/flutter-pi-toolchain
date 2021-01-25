@@ -70,7 +70,7 @@ jobs:
           make
           make install
           echo "Finish"
-          ls -la `pwd`/toolchain
+          ls -la ${GITHUB_WORKPLACE}/toolchain
 
 #      - name: Store Toolchain
 #        uses: actions/upload-artifact@v2
