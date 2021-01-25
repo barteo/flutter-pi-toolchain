@@ -83,7 +83,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: `pwd`/toolchain
+          dockerfile: ./toolchain
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/toolchain-image
           tag_with_ref: true
