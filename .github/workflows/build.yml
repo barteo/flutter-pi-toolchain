@@ -64,7 +64,7 @@ jobs:
           echo `pwd`
           cd binutils-gdb
           ./configure \
-            --prefix=`pwd`/toolchain \
+            --prefix=${GITHUB_WORKSPACE}/toolchain \
             --enable-ld \
             --target=arm-linux-gnueabihf
           make
@@ -83,7 +83,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: ./toolchain
+          dockerfile: ${GITHUB_WORKSPACE}/toolchain
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/toolchain-image
           tag_with_ref: true
