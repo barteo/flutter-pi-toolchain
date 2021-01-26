@@ -17,6 +17,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Install dependencies
+        run: |
+          apt update
+          apt install -y git
+      
       - name: Install Depot Tools
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
