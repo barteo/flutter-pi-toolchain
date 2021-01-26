@@ -10,7 +10,11 @@ jobs:
     name: Toolchain
 
     runs-on: ubuntu-latest
-    container: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
+    container:
+      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Test
