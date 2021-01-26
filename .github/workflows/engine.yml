@@ -1,0 +1,19 @@
+name: Toolchain
+
+on:
+  push:
+    branches:
+      - flutter/*
+
+jobs:
+  toolchain:
+    name: Toolchain
+
+    runs-on: ubuntu-latest
+    container: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
+
+    steps:
+      - name: Test
+        run: |
+          ls -la /toolchain
+          du -h /toolchain
