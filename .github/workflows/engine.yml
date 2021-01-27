@@ -34,6 +34,7 @@ jobs:
       - name: Checkout Engine with source code dependencies
         run: |
           export PATH=`pwd`/depot_tools:$PATH
+          eval "$(ssh-agent -s)"
           ssh-keyscan -H github.com >> ~/.ssh/known_hosts
           mkdir engine
           cp main/.gclient engine/
