@@ -21,7 +21,20 @@ jobs:
         run: |
           apt update
           apt install -y git
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: main
       
       - name: Install Depot Tools
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+
+      - name: Checkout Engine with source code dependencies
+        run: |
+          export PATH=`pwd`/depot_tools:$PATH
+          mkdir engine
+          cp main/.gclient engine/
+          cd engine
+          gclient sync
