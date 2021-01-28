@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt update
-          apt install -y git wget ssh
+          apt install -y git wget
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -32,10 +32,14 @@ jobs:
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
       - name: Checkout Engine with source code dependencies
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           export PATH=`pwd`/depot_tools:$PATH
-          eval "$(ssh-agent -s)"
-          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
           mkdir engine
           cp main/.gclient engine/
           cd engine
