@@ -41,6 +41,7 @@ jobs:
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
           ssh-add -l
+          ssh -T git@github.com
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
           cp main/.gclient engine/
