@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt update
-          apt install -y git python wget
+          apt install -y git wget
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,21 +39,11 @@ jobs:
           ssh-keyscan -H github.com >> /root/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-          pwd
-          ssh-add -l
-          pwd
-          ssh-keyscan github.com
-          pwd
-          more /root/.ssh/known_hosts
-          pwd
-          cd
-          pwd
-          ssh -v -T git@github.com
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
           cp main/.gclient engine/
           cd engine
-          python ../depot_tools/gclient.py sync -v
+          gclient sync
 
       - name: Test
         env:
