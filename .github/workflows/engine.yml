@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt update
-          apt install -y git wget
+          apt install -y git python wget
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -44,6 +44,12 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
+          cd src/flutter
+          git checkout 2f0af3715217a0c2ada72c717d4ed9178d68f6ed
+          cd ../..
+          gclient sync
+          ls -la ./build
+          ./build/install-build-deps.sh
 
       - name: Test
         env:
