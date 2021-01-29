@@ -41,6 +41,11 @@ jobs:
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
           ssh-add -l
+          pwd
+          ssh-keyscan -t rsa github.com
+          pwd
+          more ~/.ssh/known_hosts
+          pwd
           ssh -v -T git@github.com
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
