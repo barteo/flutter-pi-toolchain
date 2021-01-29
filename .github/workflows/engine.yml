@@ -36,13 +36,14 @@ jobs:
         run: |
           export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
           mkdir -p ~/.ssh
-          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
           ssh-add -l
           pwd
-          ssh-keyscan -t rsa github.com
+          ssh-keyscan github.com
+          pwd
+          ssh-keyscan github.com > ~/.ssh/known_hosts
           pwd
           more ~/.ssh/known_hosts
           pwd
