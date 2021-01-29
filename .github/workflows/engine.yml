@@ -44,4 +44,4 @@ jobs:
           mkdir engine
           cp main/.gclient engine/
           cd engine
-          gclient sync
+          gclient sync --verbose
