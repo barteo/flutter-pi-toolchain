@@ -46,7 +46,7 @@ jobs:
           gclient sync
           cd src/flutter
           git fetch
-          cd ../..
+          cd ..
           gclient sync
           ls -la ./build
           ./build/install-build-deps.sh
