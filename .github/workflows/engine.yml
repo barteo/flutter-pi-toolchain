@@ -10,17 +10,17 @@ jobs:
     name: Toolchain
 
     runs-on: ubuntu-latest
-#    container:
-#      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
-#      credentials:
-#        username: ${{ github.actor }}
-#        password: ${{ secrets.GITHUB_TOKEN }}
+    container:
+      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y git wget
+          apt update
+          apt install -y git python wget
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
           mkdir engine
           cp main/.gclient engine/
           cd engine
-          gclient sync
+          python ../depot_tools/gclient.py sync -v
 
       - name: Test
         env:
