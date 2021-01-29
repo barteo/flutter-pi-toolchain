@@ -41,7 +41,7 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
-          ssh-all -l
+          ssh-add -l
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
           cp main/.gclient engine/
