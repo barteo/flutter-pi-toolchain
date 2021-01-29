@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
+          export DEBIAN_FRONTEND=noninteractive
           apt update
           apt install -y git lsb-release python sudo tzdata wget
 
