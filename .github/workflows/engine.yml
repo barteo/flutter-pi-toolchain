@@ -32,10 +32,9 @@ jobs:
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
       - name: Checkout Engine with source code dependencies
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         shell: bash
         run: |
+          export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
@@ -47,3 +46,9 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
+
+      - name: Test
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          echo "Done"
