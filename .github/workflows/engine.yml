@@ -49,7 +49,7 @@ jobs:
           cd ..
           gclient sync
           ls -la ./build
-          ./build/install-build-deps.sh
+          ./build/install-build-deps.sh --no-prompt
 
       - name: Test
         env:
