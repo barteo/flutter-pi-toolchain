@@ -36,12 +36,12 @@ jobs:
         run: |
           export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
           mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
           ssh-add -l
-          ssh -T git@github.com
+          ssh -v -T git@github.com
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
           cp main/.gclient engine/
