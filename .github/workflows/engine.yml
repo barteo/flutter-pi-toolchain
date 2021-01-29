@@ -46,6 +46,8 @@ jobs:
           pwd
           more ~/.ssh/known_hosts
           pwd
+          cd
+          pwd
           ssh -v -T git@github.com
           export PATH=`pwd`/depot_tools:$PATH
           mkdir engine
