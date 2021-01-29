@@ -35,7 +35,8 @@ jobs:
         shell: bash
         run: |
           export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
-          mkdir -p ~/.ssh
+          mkdir -p /root/.ssh
+          ssh-keyscan -H github.com >> /root/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
           pwd
@@ -43,9 +44,7 @@ jobs:
           pwd
           ssh-keyscan github.com
           pwd
-          ssh-keyscan github.com > ~/.ssh/known_hosts
-          pwd
-          more ~/.ssh/known_hosts
+          more /root/.ssh/known_hosts
           pwd
           cd
           pwd
