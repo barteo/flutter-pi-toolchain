@@ -49,6 +49,7 @@ jobs:
           git remote add upstream git@github.com:flutter/engine.git
           git fetch
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
+          git cherry-pick f3cc39a5 # https://github.com/flutter/engine/pull/22560
           cd ..
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
