@@ -1,13 +1,13 @@
-name: Toolchain
+name: Engine
 
 on:
   push:
     branches:
-      - flutter/*
+      - flutter/disabled
 
 jobs:
-  toolchain:
-    name: Toolchain
+  engine:
+    name: Engine
 
     runs-on: ubuntu-latest
     container:
