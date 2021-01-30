@@ -26,7 +26,6 @@ jobs:
           sudo mount -v -t ext4 sysroot.img sysroot
           rm 2021-01-11-raspios-buster-armhf-full.zip
           rm 2021-01-11-raspios-buster-armhf-full.img
-          rm sysroot.img
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
