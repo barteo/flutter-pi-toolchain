@@ -1,0 +1,23 @@
+name: test
+
+on:
+  push:
+    branches:
+      - flutter/*
+
+jobs:
+  test:
+    name: Test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Mount filesystem
+        run: |
+          mkdir test
+          fdisk -l example.img
+          sudo mount -v -t ext4 example.img test
+          ls -la test
