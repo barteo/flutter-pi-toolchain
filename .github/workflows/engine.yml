@@ -32,7 +32,7 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
-      - name: Checkout Engine with source code dependencies
+      - name: Checkout Engine with dependencies
         shell: bash
         run: |
           export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
@@ -46,14 +46,22 @@ jobs:
           cd engine
           gclient sync
           cd src/flutter
-          git fetch
+          git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
           cd ..
           gclient sync
           ls -la ./build
           ./build/install-build-deps.sh --no-prompt
 
-      - name: Test
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Build Engine
         run: |
-          echo "Done"
+          cd engine/src
+          flutter/tools/gn \
+            --target-sysroot /sysroot \
+            --target-toolchain /toolchain \
+            --target-triple arm-linux-gnueabihf \
+            --linux-cpu arm \
+            --runtime-mode debug \
+            --embedder-for-target \
+            --no-lto \
+            --target-os linux \
+            --arm-float-abi hard \
