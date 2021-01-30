@@ -3,14 +3,14 @@ name: Toolchain
 on:
   push:
     branches:
-      - flutter/*
+      - flutter/disabled
 
 jobs:
   toolchain:
     name: Toolchain
 
     runs-on: ubuntu-latest
-#    container: ubuntu:18.04
+    container: ubuntu:18.04
 
     steps:
       - name: Create Toolchain path
@@ -19,8 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y bison cmake flex g++ git python texinfo
+          apt update
+          apt install -y bison cmake flex g++ git python texinfo
 
       - name: Checkout
         uses: actions/checkout@v2
