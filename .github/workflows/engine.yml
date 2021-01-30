@@ -46,10 +46,11 @@ jobs:
           cd engine
           gclient sync
           cd src/flutter
+          git remote add upstream git@github.com:flutter/engine.git
+          git fetch
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
           cd ..
-          gclient sync
-          ls -la ./build
+          gclient sync -D
           ./build/install-build-deps.sh --no-prompt
 
       - name: Build Engine
