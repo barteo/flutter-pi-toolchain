@@ -18,7 +18,6 @@ jobs:
           wget https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip
           unzip 2021-01-11-raspios-buster-armhf-full.zip
           fdisk -l 2021-01-11-raspios-buster-armhf-full.img
-          dd if=2021-01-11-raspios-buster-armhf-full.img of=sysroot.img bs=512 skip=532480 count=16269312
-          mount -v sysroot.img sysroot
+          sudo mount -v -o offset=272629760 -t ext4 2021-01-11-raspios-buster-armhf-full.img2 sysroot
           ls -la sysroot
           ls -la
