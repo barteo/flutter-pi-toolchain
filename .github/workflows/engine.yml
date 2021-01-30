@@ -21,12 +21,16 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           apt update
-          apt install -y git lsb-release python sudo tzdata wget
+          apt install -y git lsb-release python sudo transmission-cli tzdata wget
 
       - name: Checkout
         uses: actions/checkout@v2
         with:
           path: main
+
+      - name: Prepare Sysroot
+        run: |
+          transmission-cli https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip.torrent
       
       - name: Install Depot Tools
         run: |
