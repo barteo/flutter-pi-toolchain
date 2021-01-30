@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Prepare Sysroot
         run: |
           mkdir sysroot
@@ -21,3 +24,12 @@ jobs:
           sudo mount -v -o offset=272629760 -t ext4 2021-01-11-raspios-buster-armhf-full.img2 sysroot
           ls -la sysroot
           ls -la
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile-sysroot
+          registry: docker.pkg.github.com
+          repository: barteo/flutter-pi-toolchain/sysroot
