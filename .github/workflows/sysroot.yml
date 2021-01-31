@@ -40,7 +40,7 @@ jobs:
           ls -la sysroot
           df -h
           sudo du -h -d 3 sysroot
-          tar -cf sysroot.tar sysroot
+          tar -chf sysroot.tar sysroot
           sudo umount sysroot
           ls -lah
           rm sysroot.img
