@@ -39,8 +39,15 @@ jobs:
           sudo du -h -d 1 sysroot
           ls -la sysroot
           df -h
-          sudo du -h -d 3 sysroot
+          sudo du -h -d 2 sysroot
+
+      - name: Prepare Sysroot 2
+        run: |
+          ls -lah
           sudo tar -chf sysroot.tar sysroot
+
+      - name: Prepare Sysroot 3
+        run: |
           sudo umount sysroot
           ls -lah
           rm sysroot.img
@@ -48,7 +55,13 @@ jobs:
           rm 2021-01-11-raspios-buster-armhf-full.img
           df -h
           cd sysroot
+
+      - name: Prepare Sysroot 4
+        run: |
           tar -xf ../sysroot.tar
+
+      - name: Prepare Sysroot 5
+        run: |
           df -h
           cd ..
           rm sysroot.tar
