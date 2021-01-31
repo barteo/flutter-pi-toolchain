@@ -34,7 +34,7 @@ jobs:
           ls -la sysroot
           df -h
           sudo du -h -d 3 sysroot
-          tar -cf sysroot.tar
+          tar -cf sysroot.tar sysroot
           sudo umount sysroot
           rm sysroot.img
           rm 2021-01-11-raspios-buster-armhf-full.zip
