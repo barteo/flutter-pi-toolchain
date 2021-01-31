@@ -26,7 +26,7 @@ jobs:
           sudo mount -v -t ext4 sysroot.img sysroot
           sudo du -h -d 1 sysroot
           cd sysroot
-          sudo rm -rf bin boot dev etc home media mnt proc root run sbin srv sys tmp var
+          sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
           sudo du -h -d 1 sysroot
           ls -la sysroot
