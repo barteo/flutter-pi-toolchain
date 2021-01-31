@@ -25,6 +25,12 @@ jobs:
           fdisk -l sysroot.img
           sudo mount -v -t ext4 sysroot.img sysroot
           du -h -d 1 sysroot
+          cd sysroot
+          rm -rf bin boot dev etc home media mnt proc root run sbin srv sys tmp var
+          cd ..
+          du -h -d 1 sysroot
+          ls -la sysroot
+          df -h
           rm 2021-01-11-raspios-buster-armhf-full.zip
           rm 2021-01-11-raspios-buster-armhf-full.img
 
