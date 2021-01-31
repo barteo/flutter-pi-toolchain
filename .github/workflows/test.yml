@@ -3,7 +3,7 @@ name: test
 on:
   push:
     branches:
-      - flutter/*
+      - flutter/disabled
 
 jobs:
   test:
@@ -15,9 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Mount filesystem
+      - name: Test
         run: |
-          mkdir test
-          fdisk -l example.img
-          sudo mount -v -t ext4 example.img test
-          ls -la test
+          ls -la

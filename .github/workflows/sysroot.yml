@@ -15,16 +15,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Prepare Sysroot
+      - name: Download Sysroot
         run: |
           mkdir sysroot
-          wget https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip
+          wget -q https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip
+
+      - name: Mount Sysroot
+        run: |
           unzip 2021-01-11-raspios-buster-armhf-full.zip
           fdisk -l 2021-01-11-raspios-buster-armhf-full.img
           dd if=2021-01-11-raspios-buster-armhf-full.img of=sysroot.img bs=512 skip=532480 count=16269312
           fdisk -l sysroot.img
           sudo mount -v -t ext4 sysroot.img sysroot
           sudo du -h -d 1 sysroot
+
+      - name: Prepare Sysroot
+        run: |
           cd sysroot
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           sudo rm -rf usr/share/fonts usr/share/doc usr/share/icons usr/share/libreoffice
