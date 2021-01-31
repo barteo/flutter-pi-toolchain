@@ -34,8 +34,18 @@ jobs:
           ls -la sysroot
           df -h
           sudo du -h -d 3 sysroot
+          tar -cf sysroot.tar
+          sudo umount sysroot
+          rm sysroot.img
           rm 2021-01-11-raspios-buster-armhf-full.zip
           rm 2021-01-11-raspios-buster-armhf-full.img
+          df -h
+          cd sysroot
+          tar -xf ../sysroot.tar
+          df -h
+          cd ..
+          rm sysroot.tar
+          df -h
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
