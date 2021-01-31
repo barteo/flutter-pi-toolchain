@@ -44,7 +44,7 @@ jobs:
       - name: Prepare Sysroot 2
         run: |
           ls -lah
-          sudo tar -chf sysroot.tar sysroot
+          sudo tar -chzf sysroot.tar.gz sysroot
 
       - name: Prepare Sysroot 3
         run: |
@@ -58,13 +58,13 @@ jobs:
 
       - name: Prepare Sysroot 4
         run: |
-          tar -xf ../sysroot.tar
+          tar -xzf ../sysroot.tar.gz
 
       - name: Prepare Sysroot 5
         run: |
           df -h
           cd ..
-          rm sysroot.tar
+          rm sysroot.tar.gz
           ls -lah
           df -h
 
