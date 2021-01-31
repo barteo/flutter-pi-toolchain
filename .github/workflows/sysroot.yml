@@ -24,6 +24,7 @@ jobs:
           dd if=2021-01-11-raspios-buster-armhf-full.img of=sysroot.img bs=512 skip=532480 count=16269312
           fdisk -l sysroot.img
           sudo mount -v -t ext4 sysroot.img sysroot
+          du -h -d 1 sysroot
           rm 2021-01-11-raspios-buster-armhf-full.zip
           rm 2021-01-11-raspios-buster-armhf-full.img
 
