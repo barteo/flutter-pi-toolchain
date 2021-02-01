@@ -81,3 +81,4 @@ jobs:
           dockerfile: Dockerfile-sysroot
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/sysroot
+          tag_with_ref: true
