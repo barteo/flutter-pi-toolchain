@@ -46,7 +46,7 @@ jobs:
         run: |
           ls -lah
           sudo symlinks -c sysroot
-          sudo tar -chzf sysroot.tar.gz sysroot
+          sudo tar -czf sysroot.tar.gz sysroot
 
       - name: Prepare Sysroot 3
         run: |
