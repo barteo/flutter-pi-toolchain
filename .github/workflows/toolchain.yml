@@ -3,7 +3,7 @@ name: Toolchain
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   toolchain:
@@ -75,18 +75,12 @@ jobs:
           echo "Finish"
           ls -la ${{ steps.toolchain.outputs.toolchain }}
 
-#      - name: Store Toolchain
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: Toolchain-LLVM-11.0.1
-#          path: /toolchain
-
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          dockerfile: ./main/Dockerfile
+          dockerfile: ./main/Dockerfile-toolchain
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/toolchain
           tag_with_ref: true
