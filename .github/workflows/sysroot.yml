@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install dependencies
+        run: |
+          sudo apt install symlinks
+
       - name: Checkout
         uses: actions/checkout@v2
 
