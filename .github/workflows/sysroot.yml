@@ -63,7 +63,8 @@ jobs:
 
       - name: Prepare Sysroot 4
         run: |
-          tar -xzvf ../sysroot.tar.gz
+          ls -lah
+          tar -xzvf sysroot.tar.gz
 
       - name: Prepare Sysroot 5
         run: |
