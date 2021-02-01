@@ -69,7 +69,6 @@ jobs:
       - name: Prepare Sysroot 5
         run: |
           df -h
-          cd ..
           rm sysroot.tar.gz
           ls -lah
           df -h
