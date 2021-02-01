@@ -36,6 +36,9 @@ jobs:
       - name: Prepare Sysroot
         run: |
           cd sysroot
+          sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
+          sudo rm -rf usr/share/fonts usr/share/doc usr/share/icons usr/share/libreoffice
+          sudo rm -rf usr/lib/firmware usr/lib/jvm usr/lib/libreoffice usr/lib/node_modules usr/lib/pypy usr/lib/python3 usr/lib/scratch3
           cd ..
           sudo du -h -d 1 sysroot
           ls -la sysroot
@@ -60,7 +63,7 @@ jobs:
 
       - name: Prepare Sysroot 4
         run: |
-          tar -xzf ../sysroot.tar.gz
+          tar -xzvf ../sysroot.tar.gz
 
       - name: Prepare Sysroot 5
         run: |
