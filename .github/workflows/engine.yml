@@ -3,7 +3,7 @@ name: Engine
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   engine:
@@ -31,6 +31,7 @@ jobs:
       - name: Install Depot Tools
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+          ls -la /sysroot
 
       - name: Checkout Engine with dependencies
         shell: bash
