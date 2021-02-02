@@ -10,11 +10,7 @@ jobs:
     name: Engine
 
     runs-on: ubuntu-latest
-    container:
-      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    container: ubuntu:18.04
 
     steps:
       - name: Install dependencies
@@ -52,6 +48,7 @@ jobs:
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
           git cherry-pick f3cc39a5 # https://github.com/flutter/engine/pull/22560
           cd ..
+          df -h
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
 
