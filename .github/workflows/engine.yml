@@ -28,6 +28,11 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
+      - name: Test
+        run: |
+          git --version
+          df -h
+
       - name: Checkout Engine with dependencies
         shell: bash
         run: |
