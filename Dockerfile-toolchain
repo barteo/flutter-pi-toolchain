@@ -1,2 +1,2 @@
-FROM docker.pkg.github.com/barteo/flutter-pi-toolchain/sysroot:flutter-1.22.5
+FROM docker.pkg.github.com/barteo/flutter-pi-toolchain/sysroot:flutter-1.22.6
 COPY ./main/toolchain /toolchain
