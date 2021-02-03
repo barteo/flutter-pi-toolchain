@@ -48,6 +48,7 @@ jobs:
           gclient sync
           cd src/flutter
           git config --global user.email "you@example.com"
+          git config --global http.postBuffer 100000000
           git remote add upstream git@github.com:flutter/engine.git
           git fetch
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
