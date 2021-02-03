@@ -48,14 +48,12 @@ jobs:
           gclient sync
           cd src/flutter
           git config --global user.email "you@example.com"
-          git config --global http.postBuffer 100000000
           git remote add upstream git@github.com:flutter/engine.git
           git fetch
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
-          git cherry-pick f3cc39a5 # https://github.com/flutter/engine/pull/22560
           cd ..
           df -h
-          gclient sync -D
+          gclient sync
           ./build/install-build-deps.sh --no-prompt
 
       - name: Build Engine
