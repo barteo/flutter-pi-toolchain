@@ -51,6 +51,7 @@ jobs:
           git remote add upstream git@github.com:flutter/engine.git
           git fetch upstream
           git checkout 2f0af3715217a0c2ada72c717d4ed9178d68f6ed
+          patch < ../../../main/more-recent-ffi.patch
           cd ..
           df -h
           gclient sync
