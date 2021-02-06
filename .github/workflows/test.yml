@@ -15,11 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Test
+      - name: Fix permissions
         run: |
-          ls -la
           chmod +x entrypoint.sh
-          ls -la
 
       - name: Run Docker Container
         uses: docker://lukechilds/dockerpi
+
+      - name: Test
+        run: |
+          ps aux
