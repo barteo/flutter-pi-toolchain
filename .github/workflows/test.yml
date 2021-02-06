@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Docker Container
-        uses: lukechilds/dockerpi
+        uses: docker://lukechilds/dockerpi
 
       - name: Test
         run: |
