@@ -81,4 +81,5 @@ exec ${emulator} \
   --append "rw earlyprintk loglevel=8 console=ttyAMA0,115200 dwc_otg.lpm_enable=0 root=${root} rootwait panic=1" \
   --no-reboot \
   --display none \
+  --serial file:output.txt
   --daemonize

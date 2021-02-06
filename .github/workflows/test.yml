@@ -24,4 +24,5 @@ jobs:
 
       - name: Test
         run: |
-          ps aux
+          ls -lah
+          cat output.txt
