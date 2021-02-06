@@ -18,6 +18,8 @@ jobs:
       - name: Test
         run: |
           ls -la
+          chmod +x entrypoint.sh
+          ls -la
 
       - name: Run Docker Container
         uses: docker://lukechilds/dockerpi
