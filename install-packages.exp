@@ -24,10 +24,10 @@ expect "Password: "
 send "raspberry\n"
 
 expect "$ "
-send "sudo apt update"
+send "sudo apt update\n"
 
 expect "$ "
-send "sudo apt install libgtk-3-dev"
+send "sudo apt install libgtk-3-dev\n"
 
 expect "$ "
-send "sudo halt"
+send "sudo halt\n"
