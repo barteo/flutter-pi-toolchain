@@ -10,7 +10,11 @@ jobs:
     name: Engine
 
     runs-on: ubuntu-latest
-    container: ubuntu:18.04
+    container:
+      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.6
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Install dependencies
@@ -46,16 +50,25 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
+
+      - name: Checkout Engine with dependencies 2
+        shell: bash
+        run: |
           cd src/flutter
           git config --global user.email "you@example.com"
           git remote add upstream git@github.com:flutter/engine.git
-          git fetch
+          git fetch upstream
           git checkout ae90085a8437c0ae94d6b5ad2741739ebc742cb4
           git cherry-pick f3cc39a5 # https://github.com/flutter/engine/pull/22560
           cd ..
-          df -h
-          gclient sync
+          gclient sync -D
           ./build/install-build-deps.sh --no-prompt
+
+      - name: Fix Sysroot symlinks
+        run: |
+          rm -r /sysroot/usr/lib/pkgconfig
+          ln --symbolic --relative /sysroot/usr/lib/arm-linux-gnueabihf/pkgconfig /sysroot/usr/lib/pkgconfig
+          ls -lL /sysroot/usr/lib/pkgconfig
 
       - name: Build Engine
         run: |
