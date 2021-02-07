@@ -15,14 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Test 1
+        run: |
+          sudo apt install qemu-system-arm
+
+      - name: Test 2
+        run: |
+          qemu-system-arm \
+            --machine versatilepb \
+            --cpu arm1176 \
+            --m 256m \
+            --no-reboot \
+            --display none \
+            --serial mon:stdio
+
       - name: Fix permissions
         run: |
           chmod +x entrypoint.sh
 
-      - name: Run Docker Container
-        uses: docker://lukechilds/dockerpi
-
-      - name: Test
-        run: |
-          ls -lah
-          cat output.txt
+#      - name: Run Docker Container
+#        uses: docker://lukechilds/dockerpi
