@@ -27,7 +27,7 @@ expect "pi@raspberrypi:"
 send "sudo apt update\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt install libgtk-3-dev\n"
+send "sudo apt -y install libgtk-3-dev\n"
 
 expect "pi@raspberrypi:"
 send "sudo halt\n"

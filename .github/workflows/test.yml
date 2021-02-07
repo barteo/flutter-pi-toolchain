@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install expect qemu-system-arm
+          sudo apt install expect qemu-system-arm symlinks
 
       - name: Download Sysroot
         run: |
@@ -34,6 +34,58 @@ jobs:
         run: |
           chmod +x install-packages.exp
           ./install-packages.exp
+
+      - name: Mount Sysroot
+        run: |
+          mkdir sysroot
+          fdisk -l 2019-09-26-raspbian-buster-lite.img
+          dd if=2019-09-26-raspbian-buster-lite.img of=sysroot.img bs=512 skip=532480 count=16269312
+          fdisk -l sysroot.img
+          sudo mount -v -t ext4 sysroot.img sysroot
+          sudo du -h -d 1 sysroot
+
+      - name: Test
+        run: |
+          cd sysroot
+          ls -la usr/lib/arm-linux-gnueabihf/pkgconfig
+
+      - name: Prepare Sysroot 1
+        run: |
+          ls -lah
+          sudo symlinks -c sysroot
+          sudo tar -czf sysroot.tar.gz sysroot
+
+      - name: Prepare Sysroot 2
+        run: |
+          sudo umount sysroot
+          ls -lah
+          rm sysroot.img
+          rm 2021-01-11-raspios-buster-armhf-full.zip
+          rm 2021-01-11-raspios-buster-armhf-full.img
+          df -h
+          cd sysroot
+
+      - name: Prepare Sysroot 3
+        run: |
+          ls -lah
+          tar -xzvf sysroot.tar.gz
+
+      - name: Prepare Sysroot 4
+        run: |
+          df -h
+          rm sysroot.tar.gz
+          ls -lah
+          df -h
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile-sysroot
+          registry: docker.pkg.github.com
+          repository: barteo/flutter-pi-toolchain/sysroot
+          tag_with_ref: true
 
 #      - name: Test 2
 #        run: |
