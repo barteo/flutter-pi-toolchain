@@ -44,14 +44,11 @@ jobs:
           sudo mount -v -t ext4 sysroot.img sysroot
           sudo du -h -d 1 sysroot
 
-      - name: Test
-        run: |
-          cd sysroot
-          ls -la usr/lib/arm-linux-gnueabihf/pkgconfig
-
       - name: Prepare Sysroot 1
         run: |
-          ls -lah
+          cd sysroot
+          sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
+          cd ..
           sudo symlinks -c sysroot
           sudo tar -czf sysroot.tar.gz sysroot
 
