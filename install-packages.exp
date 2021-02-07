@@ -4,7 +4,7 @@
 set timeout -1
 
 # Start the guest VM
-spawn  qemu-system-arm \
+spawn qemu-system-arm \
   --machine versatilepb \
   --cpu arm1176 \
   --m 256m \
@@ -23,5 +23,5 @@ send "pi\n"
 expect "Password: "
 send "raspberry\n"
 
-expect "~$"
+expect "# "
 send "sudo halt"
