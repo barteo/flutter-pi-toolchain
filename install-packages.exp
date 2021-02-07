@@ -23,5 +23,5 @@ send "pi\n"
 expect "Password: "
 send "raspberry\n"
 
-expect "# "
+expect "$ "
 send "sudo halt"
