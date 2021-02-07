@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.5
+      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/toolchain:flutter-1.22.6
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -50,6 +50,10 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
+
+      - name: Checkout Engine with dependencies 2
+        shell: bash
+        run: |
           cd src/flutter
           git config --global user.email "you@example.com"
           git remote add upstream git@github.com:flutter/engine.git
