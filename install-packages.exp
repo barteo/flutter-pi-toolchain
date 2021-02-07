@@ -23,8 +23,11 @@ send "pi\n"
 expect "Password: "
 send "raspberry\n"
 
-expect "$"
+expect "~$"
 send "sudo apt update"
 
-expect "$"
+expect "~$"
+send "sudo apt install libgtk-3-dev"
+
+expect "~$"
 send "sudo halt"
