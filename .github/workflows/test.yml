@@ -60,8 +60,6 @@ jobs:
           sudo umount sysroot
           ls -lah
           rm sysroot.img
-          rm 2021-01-11-raspios-buster-armhf-full.zip
-          rm 2021-01-11-raspios-buster-armhf-full.img
           df -h
           cd sysroot
 
