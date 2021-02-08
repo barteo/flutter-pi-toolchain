@@ -32,11 +32,6 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
-      - name: Test
-        run: |
-          git --version
-          df -h
-
       - name: Checkout Engine with dependencies
         shell: bash
         run: |
@@ -65,6 +60,10 @@ jobs:
           rm -r /sysroot/usr/lib/pkgconfig
           ln --symbolic --relative /sysroot/usr/lib/arm-linux-gnueabihf/pkgconfig /sysroot/usr/lib/pkgconfig
           ls -lL /sysroot/usr/lib/pkgconfig
+
+      - name: Test
+        run: |
+          ninja --version
 
       - name: Configure Engine
         run: |
