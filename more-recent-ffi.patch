@@ -1,0 +1,16 @@
+Index: DEPS
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- DEPS	(revision 2f0af3715217a0c2ada72c717d4ed9178d68f6ed)
++++ DEPS	(date 1612520790000)
+@@ -196,7 +196,7 @@
+    Var('dart_git') + '/dartdoc.git@b039e21a7226b61ca2de7bd6c7a07fc77d4f64a9',
+
+   'src/third_party/dart/third_party/pkg/ffi':
+-   Var('dart_git') + '/ffi.git@454ab0f9ea6bd06942a983238d8a6818b1357edb',
++   Var('dart_git') + '/ffi.git@f288e906c92e2ab378768dfa61a40814ede7a2a5',
+
+   'src/third_party/dart/third_party/pkg/fixnum':
+    Var('dart_git') + '/fixnum.git@16d3890c6dc82ca629659da1934e412292508bba',
