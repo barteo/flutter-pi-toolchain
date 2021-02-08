@@ -50,11 +50,7 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
-
-      - name: Checkout Engine with dependencies 2
-        shell: bash
-        run: |
-          cd engine/src/flutter
+          cd src/flutter
           git config --global user.email "you@example.com"
           git remote add upstream git@github.com:flutter/engine.git
           git fetch upstream
