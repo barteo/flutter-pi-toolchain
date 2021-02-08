@@ -62,10 +62,6 @@ jobs:
           ln --symbolic --relative /sysroot/usr/lib/arm-linux-gnueabihf/pkgconfig /sysroot/usr/lib/pkgconfig
           ls -lL /sysroot/usr/lib/pkgconfig
 
-      - name: Test
-        run: |
-          ninja --version
-
       - name: Configure Engine
         run: |
           cd engine/src
@@ -82,4 +78,5 @@ jobs:
 
       - name: Build Engine
         run: |
+          cd engine/src
           ninja -C out/linux_debug_arm
