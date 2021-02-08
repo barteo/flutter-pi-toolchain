@@ -50,10 +50,6 @@ jobs:
           cp main/.gclient engine/
           cd engine
           gclient sync
-
-      - name: Checkout Engine with dependencies 2
-        shell: bash
-        run: |
           cd src/flutter
           git config --global user.email "you@example.com"
           git remote add upstream git@github.com:flutter/engine.git
@@ -70,7 +66,7 @@ jobs:
           ln --symbolic --relative /sysroot/usr/lib/arm-linux-gnueabihf/pkgconfig /sysroot/usr/lib/pkgconfig
           ls -lL /sysroot/usr/lib/pkgconfig
 
-      - name: Build Engine
+      - name: Configure Engine
         run: |
           cd engine/src
           flutter/tools/gn \
@@ -82,4 +78,8 @@ jobs:
             --embedder-for-target \
             --no-lto \
             --target-os linux \
-            --arm-float-abi hard \
+            --arm-float-abi hard
+
+      - name: Build Engine
+        run: |
+          ninja -C out/linux_debug_arm
