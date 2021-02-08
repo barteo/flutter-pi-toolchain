@@ -3,14 +3,18 @@ name: Toolchain
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   toolchain:
     name: Toolchain
 
     runs-on: ubuntu-latest
-    container: ubuntu:18.04
+    container:
+      image: docker.pkg.github.com/barteo/flutter-pi-toolchain/sysroot:flutter-1.22.6
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Create Toolchain path
@@ -74,6 +78,50 @@ jobs:
           make install
           echo "Finish"
           ls -la ${{ steps.toolchain.outputs.toolchain }}
+
+      - name: Build libcxxabi
+        run: |
+          cd llvm-project
+          mkdir build-libcxxabi && cd build-libcxxabi
+          cmake \
+            -DCMAKE_CROSSCOMPILING=True \
+            -DLLVM_TARGETS_TO_BUILD=ARM \
+            -DCMAKE_SYSROOT=/sysroot
+            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_SYSTEM_NAME=Linux \
+            -DCMAKE_SYSTEM_PROCESSOR=ARM \
+            -DCMAKE_C_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang \
+            -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++ \
+            -DLIBCXX_ENABLE_SHARED=False \
+            -DLIBCXXABI_ENABLE_EXCEPTIONS=False
+            ../libcxxabi
+          make -j `nproc`
+          make install
+
+      - name: Build libcxx
+        run: |
+          cd llvm-project
+          mkdir build-libcxx && cd build-libcxx
+          cmake \
+            -DCMAKE_CROSSCOMPILING=True \
+            -DLLVM_TARGETS_TO_BUILD=ARM \
+            -DCMAKE_SYSROOT=/sysroot \
+            -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_SYSTEM_NAME=Linux \
+            -DCMAKE_SYSTEM_PROCESSOR=ARM \
+            -DCMAKE_C_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang \
+            -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++
+            -DLIBCXX_ENABLE_SHARED=False \
+            -DLIBCXX_ENABLE_EXCEPTIONS=False \
+            -DLIBCXX_CXX_ABI=libcxxabi \
+            -DLIBCXX_CXX_ABI_INCLUDE_PATHS=${{ steps.toolchain.outputs.toolchain }}/include/c++/v1 \
+            -DLIBCXX_CXX_ABI_LIBRARY_PATH=${{ steps.toolchain.outputs.toolchain }}/lib \
+            -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=True \
+            ../llvm/projects/libcxx
+          make -j `nproc`
+          make install
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
