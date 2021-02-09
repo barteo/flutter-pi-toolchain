@@ -94,7 +94,7 @@ jobs:
             -DCMAKE_C_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang \
             -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++ \
             -DLIBCXX_ENABLE_SHARED=False \
-            -DLIBCXXABI_ENABLE_EXCEPTIONS=False
+            -DLIBCXXABI_ENABLE_EXCEPTIONS=False \
             ../libcxxabi
           make -j `nproc`
           make install
