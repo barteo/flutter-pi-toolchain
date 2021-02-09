@@ -3,7 +3,7 @@ name: Toolchain
 on:
   push:
     branches:
-      - flutter/*
+      - flutter/disabled
 
 jobs:
   toolchain:

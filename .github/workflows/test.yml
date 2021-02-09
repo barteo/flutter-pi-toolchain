@@ -3,7 +3,7 @@ name: test
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   test:
@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install expect qemu-system-arm symlinks
+          sudo apt install expect qemu-system-arm
 
       - name: Download Sysroot
         run: |
@@ -49,7 +49,6 @@ jobs:
           cd sysroot
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
-          sudo symlinks -c sysroot
           sudo tar -czf sysroot.tar.gz sysroot
 
       - name: Prepare Sysroot 2
@@ -83,21 +82,3 @@ jobs:
           registry: docker.pkg.github.com
           repository: barteo/flutter-pi-toolchain/sysroot
           tag_with_ref: true
-
-#      - name: Test 2
-#        run: |
-#          qemu-system-arm \
-#            --machine versatilepb \
-#            --cpu arm1176 \
-#            --m 256m \
-#            --drive "format=raw,file=2019-09-26-raspbian-buster-lite.img" \
-#            --net nic --net user,hostfwd=tcp::5022-:22 \
-#            --dtb "versatile-pb.dtb" \
-#            --kernel "kernel-qemu-4.19.50-buster" \
-#            --append "rw earlyprintk loglevel=8 console=ttyAMA0,115200 dwc_otg.lpm_enable=0 root=/dev/sda2 rootwait panic=1" \
-#            --no-reboot \
-#            --display none \
-#            --serial mon:stdio
-
-#      - name: Run Docker Container
-#        uses: docker://lukechilds/dockerpi
