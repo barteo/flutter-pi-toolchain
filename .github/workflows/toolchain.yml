@@ -83,6 +83,10 @@ jobs:
         run: |
           cd llvm-project
           mkdir build-libcxxabi && cd build-libcxxabi
+          pwd
+          ls -la ..
+          pwd
+          ls -la ../libcxxabi
           cmake \
             -DCMAKE_CROSSCOMPILING=True \
             -DLLVM_TARGETS_TO_BUILD=ARM \
@@ -119,7 +123,7 @@ jobs:
             -DLIBCXX_CXX_ABI_INCLUDE_PATHS=${{ steps.toolchain.outputs.toolchain }}/include/c++/v1 \
             -DLIBCXX_CXX_ABI_LIBRARY_PATH=${{ steps.toolchain.outputs.toolchain }}/lib \
             -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=True \
-            ../llvm/projects/libcxx
+            ../libcxx
           make -j `nproc`
           make install
 
