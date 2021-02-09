@@ -17,6 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt update
           sudo apt install expect qemu-system-arm
 
       - name: Download Sysroot
@@ -47,6 +48,7 @@ jobs:
       - name: Prepare Sysroot 1
         run: |
           cd sysroot
+          ls -la /lib
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
           sudo tar -czf sysroot.tar.gz sysroot
