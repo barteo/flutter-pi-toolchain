@@ -83,14 +83,10 @@ jobs:
         run: |
           cd llvm-project
           mkdir build-libcxxabi && cd build-libcxxabi
-          pwd
-          ls -la ..
-          pwd
-          ls -la ../libcxxabi
           cmake \
             -DCMAKE_CROSSCOMPILING=True \
             -DLLVM_TARGETS_TO_BUILD=ARM \
-            -DCMAKE_SYSROOT=/sysroot
+            -DCMAKE_SYSROOT=/sysroot \
             -DCMAKE_INSTALL_PREFIX=${{ steps.toolchain.outputs.toolchain }} \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_SYSTEM_NAME=Linux \
@@ -116,7 +112,7 @@ jobs:
             -DCMAKE_SYSTEM_NAME=Linux \
             -DCMAKE_SYSTEM_PROCESSOR=ARM \
             -DCMAKE_C_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang \
-            -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++
+            -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++ \
             -DLIBCXX_ENABLE_SHARED=False \
             -DLIBCXX_ENABLE_EXCEPTIONS=False \
             -DLIBCXX_CXX_ABI=libcxxabi \
