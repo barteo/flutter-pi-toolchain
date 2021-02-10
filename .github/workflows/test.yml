@@ -43,14 +43,12 @@ jobs:
           dd if=2019-09-26-raspbian-buster-lite.img of=sysroot.img bs=512 skip=532480 count=16269312
           fdisk -l sysroot.img
           sudo mount -v -t ext4 sysroot.img sysroot
+          ls -la sysroot/lib
           sudo du -h -d 1 sysroot
 
       - name: Prepare Sysroot 1
         run: |
-          cd sysroot
-          ls -la lib
-          pwd
-          ls -laL lib
+          ls -laL sysroot/lib
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
           sudo tar -czf sysroot.tar.gz sysroot
