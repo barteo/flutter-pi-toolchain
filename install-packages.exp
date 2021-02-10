@@ -42,4 +42,4 @@ expect "pi@raspberrypi:"
 send "ls -la /lib\n"
 
 expect "pi@raspberrypi:"
-send "sudo halt\n"
+send "sudo shutdown -h now\n"
