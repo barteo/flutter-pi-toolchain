@@ -48,7 +48,8 @@ jobs:
 
       - name: Prepare Sysroot 1
         run: |
-          ls -laL sysroot/lib
+          cd sysroot
+          ls -laL lib
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
           sudo tar -czf sysroot.tar.gz sysroot
