@@ -27,16 +27,13 @@ expect "pi@raspberrypi:"
 send "sudo apt update\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt -y install symlinks\n"
+send "sudo apt -y install libgtk-3-dev symlinks\n"
 
 expect "pi@raspberrypi:"
 send "cd /\n"
 
 expect "pi@raspberrypi:"
 send "sudo symlinks -c /lib /usr\n"
-
-expect "pi@raspberrypi:"
-send "sudo apt -y install libgtk-3-dev symlinks\n"
 
 expect "pi@raspberrypi:"
 send "ls -la /lib\n"
