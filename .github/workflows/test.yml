@@ -75,8 +75,6 @@ jobs:
           rm sysroot.tar.gz
           cd sysroot
           ls -la lib
-          pwd
-          ls -laL lib
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
