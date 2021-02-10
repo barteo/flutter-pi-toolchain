@@ -3,7 +3,7 @@ name: test
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   test:
@@ -48,7 +48,9 @@ jobs:
       - name: Prepare Sysroot 1
         run: |
           cd sysroot
-          ls -la /lib
+          ls -la lib
+          pwd
+          ls -laL lib
           sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
           cd ..
           sudo tar -czf sysroot.tar.gz sysroot
@@ -72,8 +74,10 @@ jobs:
         run: |
           df -h
           rm sysroot.tar.gz
-          ls -lah
-          df -h
+          cd sysroot
+          ls -la lib
+          pwd
+          ls -laL lib
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
