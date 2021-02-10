@@ -39,4 +39,7 @@ expect "pi@raspberrypi:"
 send "ls -la /lib\n"
 
 expect "pi@raspberrypi:"
+send "sync\n"
+
+expect "pi@raspberrypi:"
 send "sudo shutdown -h now\n"
