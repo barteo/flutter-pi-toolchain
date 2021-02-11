@@ -25,6 +25,10 @@ jobs:
         run: |
           apt update
           apt install -y bison cmake flex g++ git python texinfo
+          
+      - name: Install dependencies 2
+        run: |
+          apt install -y make     
 
       - name: Checkout
         uses: actions/checkout@v2
