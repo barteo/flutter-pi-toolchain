@@ -3,7 +3,7 @@ name: test
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   test:
@@ -50,7 +50,7 @@ jobs:
         run: |
           cd sysroot
           ls -laL lib
-          sudo rm -rf bin boot dev etc home media mnt opt proc root run sbin srv sys tmp var
+          sudo rm -rf boot dev home media mnt proc root run srv sys tmp var
           cd ..
           sudo tar -czf sysroot.tar.gz sysroot
 
