@@ -77,18 +77,6 @@ jobs:
           make -j `nproc`
           make install
 
-      - name: Build Binutils
-        run: |
-          cd binutils-gdb
-          ./configure \
-            --prefix=${{ steps.toolchain.outputs.toolchain }} \
-            --enable-ld \
-            --target=arm-linux-gnueabihf
-          make
-          make install
-          echo "Finish"
-          ls -la ${{ steps.toolchain.outputs.toolchain }}
-
       - name: Build libcxxabi
         run: |
           cd llvm-project
@@ -132,6 +120,18 @@ jobs:
             ../libcxx
           make -j `nproc`
           make install
+          
+      - name: Build Binutils
+        run: |
+          cd binutils-gdb
+          ./configure \
+            --prefix=${{ steps.toolchain.outputs.toolchain }} \
+            --enable-ld \
+            --target=arm-linux-gnueabihf
+          make
+          make install
+          echo "Finish"
+          ls -la ${{ steps.toolchain.outputs.toolchain }}         
 
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
