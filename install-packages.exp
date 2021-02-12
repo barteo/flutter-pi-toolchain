@@ -30,7 +30,7 @@ expect "pi@raspberrypi:"
 send "sudo apt -y install libgtk-3-dev symlinks\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt -y uninstall make\n"
+send "sudo apt -y remove make\n"
 
 expect "pi@raspberrypi:"
 send "cd /\n"
