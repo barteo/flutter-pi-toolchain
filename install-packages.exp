@@ -36,7 +36,7 @@ expect "pi@raspberrypi:"
 send "sudo apt -y autoremove\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt -y upgrade\n"
+send "sudo apt -y install libc6-dev\n"
 
 expect "pi@raspberrypi:"
 send "cd /\n"
