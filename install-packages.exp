@@ -33,6 +33,9 @@ expect "pi@raspberrypi:"
 send "sudo apt -y remove make\n"
 
 expect "pi@raspberrypi:"
+send "sudo apt -y autoremove\n"
+
+expect "pi@raspberrypi:"
 send "cd /\n"
 
 expect "pi@raspberrypi:"
