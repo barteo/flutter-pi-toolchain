@@ -48,9 +48,9 @@ jobs:
 
       - name: Test
         run: |
-          ls -la /sysroot/lib
+          ls -la /sysroot/lib/arm-linux-gnueabihf
           pwd
-          ls -laL /sysroot/lib
+          ls -la /sysroot/usr/lib/arm-linux-gnueabihf
 
       - name: Build LLVM
         run: |
@@ -104,7 +104,6 @@ jobs:
             -DCMAKE_CXX_COMPILER=${{ steps.toolchain.outputs.toolchain }}/bin/clang++ \
             -DLIBCXX_ENABLE_SHARED=False \
             -DLIBCXXABI_ENABLE_EXCEPTIONS=False \
-            -DCMAKE_CXX_FLAGS=-L/sysroot/lib/arm-linux-gnueabihf/ \
             ../libcxxabi
           make -j `nproc`
           make install
