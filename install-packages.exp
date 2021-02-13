@@ -39,7 +39,7 @@ expect "pi@raspberrypi:"
 send "sudo apt -y install libc6-dev\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt -y install libstdc++-8-dev\n"
+send "sudo apt -y install libc++-dev\n"
 
 expect "pi@raspberrypi:"
 send "sudo apt search libstdc++\n"
