@@ -30,7 +30,7 @@ expect "pi@raspberrypi:"
 send "sudo apt -y install symlinks\n"
 
 expect "pi@raspberrypi:"
-send "sudo apt -y remove make\n"
+send "sudo apt -y remove binutils make\n"
 
 expect "pi@raspberrypi:"
 send "sudo apt -y autoremove\n"
