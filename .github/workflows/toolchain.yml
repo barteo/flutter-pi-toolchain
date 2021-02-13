@@ -111,6 +111,8 @@ jobs:
       - name: Build libcxx
         run: |
           cd llvm-project
+          cp libcxx/include/cxxabi.h ${{ steps.toolchain.outputs.toolchain }}/include/c++/v1/
+          cp libcxx/include/__cxxabi_config.h ${{ steps.toolchain.outputs.toolchain }}/include/c++/v1/
           mkdir build-libcxx && cd build-libcxx
           cmake \
             -DCMAKE_CROSSCOMPILING=True \
