@@ -95,5 +95,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: engine-linux-${{ matrix.target }}-arm
-          path: out/linux_${{ matrix.target }}_arm
+          path: engine/src/out/linux_${{ matrix.target }}_arm
 
