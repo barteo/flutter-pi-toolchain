@@ -3,7 +3,7 @@ name: Sysroot
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   sysroot:
