@@ -3,7 +3,7 @@ name: Engine
 on:
   push:
     branches:
-      - flutter/disabled
+      - flutter/*
 
 jobs:
   engine:
