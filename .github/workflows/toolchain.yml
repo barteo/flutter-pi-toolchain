@@ -48,9 +48,8 @@ jobs:
 
       - name: Test
         run: |
-          ls -la /sysroot/lib/arm-linux-gnueabihf
-          pwd
-          ls -la /sysroot/usr/lib/arm-linux-gnueabihf
+          cd llvm-project
+          ls -la libcxx/include
 
       - name: Build LLVM
         run: |
