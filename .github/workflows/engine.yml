@@ -85,3 +85,10 @@ jobs:
         run: |
           cd engine/src
           ninja -C out/linux_debug_arm
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: engine-linux-debug-arm
+          path: out/linux_debug_arm
+
