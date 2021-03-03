@@ -60,8 +60,6 @@ jobs:
           git remote add upstream git@github.com:flutter/engine.git
           git fetch upstream
           git checkout 40441def69
-          git cherry-pick f3cc39a5 # https://github.com/flutter/engine/pull/22560
-          patch < ../../../main/more-recent-ffi.patch
           cd ..
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
