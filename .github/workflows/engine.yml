@@ -60,6 +60,7 @@ jobs:
           git remote add upstream git@github.com:flutter/engine.git
           git fetch upstream
           git checkout 3459eb2436
+          git cherry-pick 4ba79a34a06a6a2f026f84ef162cfefd69c2658d # Fix argument specifier for g_warning()
           cd ..
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
