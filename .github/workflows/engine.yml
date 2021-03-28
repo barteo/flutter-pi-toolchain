@@ -59,7 +59,7 @@ jobs:
           git config --global user.email "you@example.com"
           git remote add upstream git@github.com:flutter/engine.git
           git fetch upstream
-          git checkout 5d8bf811b3
+          git checkout 3459eb2436
           cd ..
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
