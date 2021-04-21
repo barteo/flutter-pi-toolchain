@@ -61,6 +61,7 @@ jobs:
           git fetch upstream
           git checkout b09f014e96
           git cherry-pick 4ba79a34a06a6a2f026f84ef162cfefd69c2658d # Fix argument specifier for g_warning()
+          git revert bdadaad20d01f6b1638be6a5348d4dcc6b0fa2ca
           cd ..
           gclient sync -D
           ./build/install-build-deps.sh --no-prompt
